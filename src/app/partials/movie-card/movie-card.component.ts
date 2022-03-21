@@ -25,8 +25,6 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.cardSize = 'halfWidth';
-    console.info('Movie Data = ', this.movieData);
-    console.info('item index = ', this.itemIndex);
     if(typeof document !== 'undefined') {
       const element = document.getElementById('cardGrid-'+this.itemIndex);
       if(element != null) {
@@ -37,9 +35,7 @@ export class MovieCardComponent implements OnInit {
 
   showDetails(): void {
     this.cardSize = 'fullWidth';
-    console.info(this.movieData.imdbID)
     this.appService.getDetails(this.movieData.imdbID).subscribe((res: SearchResult) => {
-      console.info('movie response = ', res);
       this.appService.elementClassModification(this.currentMovieElement, this.renderer, 'fullWidth', 'add');
     })
   }
