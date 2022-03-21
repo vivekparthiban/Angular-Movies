@@ -11,18 +11,12 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(titleValue: string): Observable<SearchResult> {
-    const apiUrl = `${this.api}&s=${titleValue}*`;
-    return this.http.get<SearchResult>(apiUrl);
-  }
-
-  getMoviesAtPage(titleValue: string, pageValue: number): Observable<any> {
-    return this.http.get(`${this.api}&s=${titleValue}*&page=${pageValue}`);
+  getMoviesPerPage(titleValue: string, pageValue: number): Observable<SearchResult> {
+    return this.http.get<SearchResult>(`${this.api}&s=${titleValue}*&page=${pageValue}`);
   }
 
   getDetails(imdbTitle: string): Observable<SearchResult> {
-    const apiUrl = `${this.api}&i=${imdbTitle}`;
-    return this.http.get<SearchResult>(apiUrl);
+    return this.http.get<SearchResult>(`${this.api}&i=${imdbTitle}`);
   }
 
 }
