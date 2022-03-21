@@ -1,42 +1,57 @@
 $white:#fff;
 
 .movies-div-container{
-  box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.75);
-  -webkit-box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.75);
-  min-height: 100px;
+  box-shadow: -1px 3px 5px 0px #999;
+  -webkit-box-shadow: -1px 3px 5px 0px #999;
+  -moz-box-shadow: -1px 3px 5px 0px #999;
   .movie-container{
     max-width: 1200px;
     text-align: center;
     margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 24px 16px;
   }
 }
 .title{
   font-size: 20px;
   text-align:left;
   float: left;
-  padding-top: 40px;
+  font-weight: 500;
 }
-.search-box ::ng-deep .mat-form-field-flex{
-  background-color: $white;
-
-  input{
-    background: $white;
-    font-size: 17px;
-  }
-  button{
-    border: 0;
+.search-box ::ng-deep {
+  .mat-form-field-flex{
     background-color: $white;
-
+    input{
+      background: $white;
+      font-size: 17px;
+    }
+    button{
+      border: 0;
+      background-color: $white;
+    }
   }
-
+  .mat-form-field-wrapper {
+    padding-bottom: 0px;
+  }
+  .mat-form-field-underline {
+    bottom: 0px;
+  }
+  .mat-form-field-appearance-fill .mat-form-field-flex, .mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0px !important;
+  }
+  .mat-form-field-wrapper {
+    height: 40px;
+  }
 }
 .search-box{
   float: right;
-  padding-top: 15px;
   .search-title{
     font-size: 16px;
-    padding-right: 5px;
+    padding-right: 16px;
+    align-self: end;
+    vertical-align: bottom;
   }
   .search-btn{
     color: $white;
@@ -47,7 +62,9 @@ $white:#fff;
     padding: 10px;
     min-width: 100px;
     text-transform: uppercase;
-    margin-left: 10px;
+    margin-left: 16px;
+    font-weight: bold;
+    height: 40px;
   }
 }
 .searchLoad  ::ng-deep{
@@ -75,4 +92,42 @@ $white:#fff;
     .mat-card-title{
       margin-left: 20px;
     }
+}
+.body-section {
+  mat-card {
+    background-color: #F3F3F3;
+    text-align: center;
+    box-shadow: none;
+  }
+}
+
+.mainContainer-xl, .mainContainer-l, .mainContainer-m {
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 24px 0px;
+}
+
+@media (min-width: 993px) {
+  .movie-container {
+    padding: 24px 0px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .search-box{
+    float: none;
+    display: flex;
+    padding-top: 0px;
+    .mat-form-field {
+      width: 100px !important;
+    }
+    ::ng-deep {
+      .mat-form-field-infix {
+        width: 70px !important;
+      }
+    }
+  }
+  .body-section {
+    padding: 24px 16px;
+  }
 }

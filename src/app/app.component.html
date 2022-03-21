@@ -2,11 +2,11 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primar movies-div-container">
     <div class="movie-container">
       <a class="navbar-brand title">
-        OMDB Movies
+        OMDB Search
       </a>
-      <div class="search-box" >
+      <div class="search-box d-flex" >
 
-        <label class="search-title">Search a Movie</label>
+        <label class="search-title" fxHide.xs>Search a Movie</label>
         <mat-form-field class="example-form-field" appearance="fill">
           <input matInput type="text" [(ngModel)]="searchValue">
           <button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
@@ -21,9 +21,13 @@
   </nav>
 </header>
 <!-- <router-outlet></router-outlet> -->
-<div class="mainContainer-{{deviceSize}}">
-  <div class="initialLoad" *ngIf="pageState == 'Initial'" [innerHtml]="welcomeMessage"></div>
-  <div class="errorLoad" *ngIf="pageState == 'Error'" [innerHtml]="errorMessage"></div>
+<div class="body-section mainContainer-{{deviceSize}}">
+  <mat-card *ngIf="pageState == 'Initial'">
+    <div class="initialLoad" [innerHtml]="welcomeMessage"></div>
+  </mat-card>
+  <mat-card *ngIf="pageState == 'Error'">
+    <div class="errorLoad" [innerHtml]="errorMessage"></div>
+  </mat-card>
   <div class="searchLoad" *ngIf="pageState == 'Loaded'">
     <mat-grid-list cols="2" rowHeight="2:1">
       <div class="movie-card" *ngFor="let item of this.searchResponse.Search">
