@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SearchResult } from './model/search-result';
@@ -17,6 +17,14 @@ export class AppService {
 
   getDetails(imdbTitle: string): Observable<SearchResult> {
     return this.http.get<SearchResult>(`${this.api}&i=${imdbTitle}`);
+  }
+
+  elementClassModification(element : HTMLElement, renderer: Renderer2, cssClass : string, action : string) {
+    if(action == 'add') {
+      renderer.addClass(element, cssClass);
+    } else {
+      renderer.removeClass(element, cssClass);
+    }
   }
 
 }
