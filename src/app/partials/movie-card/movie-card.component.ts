@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { Movie } from '../../model/movie';
 import { AppService } from '../../app.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-movie-card',
@@ -19,7 +20,8 @@ export class MovieCardComponent implements OnInit {
   wrapperElement !: HTMLElement;
   constructor(
     private appService: AppService,
-    private renderer : Renderer2
+    private renderer : Renderer2,
+    private spinnerService : NgxSpinnerService
   ) {
    }
 
@@ -38,11 +40,15 @@ export class MovieCardComponent implements OnInit {
   }
 
   showDetails(): void {
+    this.spinnerService.show();
     this.cardSize = 'fullWidth';
     this.appService.getDetails(this.movieData.imdbID).subscribe((res: Movie) => {
       this.movieData = res;
       this.appService.elementClassModification(this.currentMovieElement, this.renderer, 'fullWidth', 'add');
       this.appService.elementClassModification(this.wrapperElement, this.renderer, 'wrapperFullWidth', 'add');
+      setTimeout(() => {
+        this.spinnerService.hide();
+      }, 2000);
     })
   }
 

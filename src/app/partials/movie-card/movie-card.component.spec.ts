@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { of } from 'rxjs';
+import { NgxSpinnerService, NgxSpinnerModule } from "ngx-spinner";
 describe('MovieCardComponent', () => {
   let component: MovieCardComponent;
   let fixture: ComponentFixture<MovieCardComponent>;
@@ -24,16 +25,16 @@ describe('MovieCardComponent', () => {
     getDetails(imdbId : string) {
       return of(sampleInput);
     }
-    elementClassModification(element : HTMLElement, renderer: Renderer2, cssClass : string, action : string) { 
+    elementClassModification(element : HTMLElement, renderer: Renderer2, cssClass : string, action : string) {
 
     }
   }
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports : [ HttpClientTestingModule, HttpClientModule , FormsModule, ReactiveFormsModule , MatCardModule, MatInputModule],
+      imports : [ HttpClientTestingModule, HttpClientModule , FormsModule, ReactiveFormsModule , MatCardModule, MatInputModule, NgxSpinnerModule],
       declarations: [ MovieCardComponent ],
-      providers : [ Renderer2, 
-        { provide : AppService, useClass : MockAppService}]
+      providers : [ Renderer2,
+        { provide : AppService, useClass : MockAppService}, NgxSpinnerService]
     })
     .compileComponents()
     .then(() => {

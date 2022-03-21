@@ -10,17 +10,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerService, NgxSpinnerModule } from "ngx-spinner";
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule, HttpClientTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
-        MatCardModule, MatInputModule, BrowserAnimationsModule
+        MatCardModule, MatInputModule, BrowserAnimationsModule, NgxSpinnerModule
       ],
       declarations: [
         AppComponent
       ],
-      providers : [ Renderer2, AppService, MediaObserver]
+      providers : [ Renderer2, AppService, MediaObserver, NgxSpinnerService]
     }).compileComponents();
   });
 

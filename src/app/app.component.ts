@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { SearchResult } from './model/search-result';
 import { MediaObserver } from '@angular/flex-layout';
 import { Movie } from './model/movie';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   pageSize: number = 10;
   moviesList : Movie[] = [];
   constructor(private appService : AppService,
-    private observableMedia: MediaObserver) {
+    private observableMedia: MediaObserver,
+    private spinnerService : NgxSpinnerService) {
   }
 
   ngOnInit(): void {
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   onSearchClick() : void {
+    this.spinnerService.show();
     this.appService.getMoviesPerPage(this.searchValue, 1).subscribe((res : SearchResult) => {
       this.searchResponse = res;
       if(res.Response == 'True') {
@@ -45,17 +48,27 @@ export class AppComponent implements OnInit, AfterViewInit {
         } else {
           this.pageState = 'Error';
         }
+        setTimeout(() => {
+          this.spinnerService.hide();
+        }, 2000);
       } else {
         this.pageState = 'Error';
+        setTimeout(() => {
+          this.spinnerService.hide();
+        }, 2000);
       }
     });
   }
 
   onPageChange($event : number) {
+    this.spinnerService.show();
     this.page = $event;
     this.appService.getMoviesPerPage(this.searchValue, $event).subscribe((res : SearchResult) => {
       this.moviesList = [];
       this.moviesList = res.Search;
+      setTimeout(() => {
+        this.spinnerService.hide();
+      }, 2000);
     });
   }
 }
