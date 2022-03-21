@@ -15,6 +15,7 @@ export class MovieCardComponent implements OnInit {
   @Input()
   itemIndex !: number;
   cardSize : string = '';
+  gridColumns = 1;
   currentMovieElement !: HTMLElement;
   constructor(
     private appService: AppService,
@@ -40,6 +41,13 @@ export class MovieCardComponent implements OnInit {
     this.appService.getDetails(this.movieData.imdbID).subscribe((res: SearchResult) => {
       console.info('movie response = ', res);
       this.appService.elementClassModification(this.currentMovieElement, this.renderer, 'fullWidth', 'add');
+    })
+  }
+
+  hideDetails() {
+    this.cardSize = 'halfWidth';
+    this.appService.getDetails(this.movieData.imdbID).subscribe((res: SearchResult) => {
+      this.appService.elementClassModification(this.currentMovieElement, this.renderer, 'halfWidth', 'add');
     })
   }
 

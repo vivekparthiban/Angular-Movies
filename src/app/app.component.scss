@@ -1,5 +1,9 @@
 $white:#fff;
 
+app-movie-card {
+  width: 100%;
+}
+
 .movies-div-container{
   box-shadow: -1px 3px 5px 0px #999;
   -webkit-box-shadow: -1px 3px 5px 0px #999;
@@ -81,19 +85,20 @@ $white:#fff;
     }
     .movie-card-box{
       display: flex;
-      .movie-card-left{
-        width: 49%;
-      }
-      .movie-card-righ{
-        width: 49%;
-
-      }
     }
     .mat-card-title{
-      margin-left: 20px;
+      margin: 16px;
+    }
+    .movie-card-left{
+      width: 25%;
+    }
+    .movie-card-right{
+      width: 75%;
+      text-align: left;
     }
 }
 .body-section {
+  padding:24px 0px;
   mat-card {
     background-color: #F3F3F3;
     text-align: center;
@@ -101,10 +106,29 @@ $white:#fff;
   }
 }
 
+app-movie-card {
+  align-self: start;
+}
+.error-class {
+  border: 1px solid #F44336;
+  color: #F44336;
+  background-color: rgba(244,67,54,0.1) !important;
+}
+
 .mainContainer-xl, .mainContainer-l, .mainContainer-m {
   max-width: 1200px;
   margin: 0px auto;
   padding: 24px 0px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  grid-auto-rows: 220px;
+}
+::ng-deep .ngx-pagination {
+  padding-left: 0px;
 }
 
 @media (min-width: 993px) {
@@ -126,8 +150,19 @@ $white:#fff;
         width: 70px !important;
       }
     }
+    .search-btn{
+      margin-left: 8px;
+    }
   }
   .body-section {
     padding: 24px 16px;
+  }
+  ::ng-deep .mat-card-title {
+    font-size: 20px !important;
+  }
+}
+@media (max-width: 767px) {
+  .wrapper {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

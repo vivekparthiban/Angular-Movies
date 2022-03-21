@@ -1,7 +1,91 @@
 .example-card {
-  max-width: 400px;
+  max-width: 99%;
 }
 
 .example-header-image {
   background-size: cover;
+}
+
+
+mat-toolbar {
+  justify-content: space-between;
+}
+
+.content {
+  padding: 0px 16px 0px 0px;
+}
+
+.content > mat-card {
+  margin-bottom: 16px;
+}
+
+::ng-deep {
+  .mat-grid-tile-content {
+    height: max-content;
+  }
+}
+
+.flex-mobile {
+  ::ng-deep {
+    .mat-card {
+      padding: 0px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  // .flex-mobile {
+  //   padding: 0px !important;
+  // }
+  ::ng-deep {
+    .mat-card-actions {
+      width: 66% !important;
+      align-items: center !important;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    bottom: 0px;
+    position: absolute;
+    width: 70%;
+    margin: 0px 16px 16px;
+    padding: 16px 0 0px;
+    border-top: 1px solid #ccc;
+  }
+}
+.movie-card-fullWidth {
+  width: 100.6%;
+    z-index: 999;
+    position: absolute;
+}
+.search-btn {
+  color: #fff;
+  background-color: #007de9;
+  font-size: 15px;
+  border: 0;
+  border-radius: 4px;
+  padding: 10px;
+  min-width: 100px;
+  text-transform: uppercase;
+  margin-left: 16px;
+  font-weight: bold;
+  height: 40px;
+}
+mat-card-title {
+  span{
+    vertical-align: top;
+    cursor: pointer;
+  }
+  img {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+  }
+}
+p {
+  margin: 16px;
 }

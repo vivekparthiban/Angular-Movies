@@ -32,10 +32,12 @@
   </div>
   <div class="searchLoad" *ngIf="pageState == 'Loaded'">
     <mat-grid-list cols="2" rowHeight="2:1">
-      <div class="movie-card" *ngFor="let item of moviesList | paginate : {itemsPerPage: pageSize, currentPage: page, totalItems: count};let i = index">
-        <mat-grid-tile id="cardGrid-{{i}}">
+      <div class="wrapper">
+        <div class="movie-card" *ngFor="let item of moviesList | paginate : {itemsPerPage: pageSize, currentPage: page, totalItems: count};let i = index">
+        <div id="cardGrid-{{i}}">
           <app-movie-card [movieData]="item" [itemIndex]="i"></app-movie-card>
-        </mat-grid-tile>
+        </div>
+      </div>
       </div>
     </mat-grid-list>
     <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onPageChange($event)"></pagination-controls>

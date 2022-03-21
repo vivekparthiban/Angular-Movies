@@ -5,13 +5,42 @@
       <img mat-card-image src="{{movieData.Poster}}" alt="{{movieData.Title}"/>
       </div>
       <div class="movie-card-right">
-        <mat-card-title>{{movieData.Title}}</mat-card-title>
+        <mat-card-title><span  *ngIf="cardSize == 'fullWidth'" (click)="hideDetails()"><img src="/assets/back-arrow.png" alt="Back"></span>{{movieData.Title}}</mat-card-title>
+        <p *ngIf="cardSize == 'fullWidth'">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         <mat-card-actions>
           <span class="year">{{movieData.Year}}</span>
-          <button mat-button (click)="showDetails()">DETAILS</button>
+          <button *ngIf="cardSize == 'halfWidth'" class="search-btn" mat-button (click)="showDetails()">DETAILS</button>
         </mat-card-actions>
       </div>
     </div>
   </mat-card>
 </div>
 
+
+<!-- <div class="content movie-card-{{cardSize}}">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="50%" class="flex-mobile">
+      <mat-card class="mat-elevation-z4" style="display: flex;">
+        <div class="movie-card-left">
+          <img mat-card-image src="{{movieData.Poster}}" alt="{{movieData.Title}"/>
+        </div>
+        <div class="movie-card-right">
+          <mat-card-title>{{movieData.Title}}</mat-card-title>
+          <mat-card-actions>
+            <span class="year">{{movieData.Year}}</span>
+            <button mat-button (click)="showDetails()">DETAILS</button>
+          </mat-card-actions>
+        </div>
+        <mat-card-content>
+          <p>
+            The Himalayas is a mountain range in Asia.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div> -->
