@@ -4,12 +4,16 @@ app-movie-card {
   width: 100%;
 }
 
+.wrapper {
+  display : flow-root;
+}
+
 .movies-div-container{
   box-shadow: -1px 3px 5px 0px #999;
   -webkit-box-shadow: -1px 3px 5px 0px #999;
   -moz-box-shadow: -1px 3px 5px 0px #999;
   .movie-container{
-    max-width: 1200px;
+    max-width: 1000px;
     text-align: center;
     margin: 0 auto;
     justify-content: space-between;
@@ -73,14 +77,14 @@ app-movie-card {
   }
 }
 .searchLoad  ::ng-deep{
-  max-width: 1200px;
+  max-width: 1000px;
     text-align: center;
     margin: 0 auto;
     .example-card{
       padding: 0;
     }
     .mat-card-image{
-      height: 200px;
+      height: 250px;
       margin: 0;
       width: 100%;
     }
@@ -117,17 +121,12 @@ app-movie-card {
 }
 
 .mainContainer-xl, .mainContainer-l, .mainContainer-m {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0px auto;
   padding: 24px 0px;
 }
 
-.wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  grid-auto-rows: 220px;
-}
+
 ::ng-deep .ngx-pagination {
   padding-left: 0px;
 }
@@ -137,7 +136,45 @@ app-movie-card {
     padding: 24px 0px !important;
   }
 }
+.movie-card {
+  width: 45%;
+  float: left;
+  margin: 20px;
+}
+@media (max-width: 767px) {
+  .searchLoad  ::ng-deep{
+    .mat-card-image{
+      height: 200px;
+    }
 
+  }
+  .navbar-brand.title , .mat-card-title{
+    font-size: 16px;
+  }
+
+  .movie-card {
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+
+  }
+  pagination-controls ::ng-deep{
+    position: absolute;
+    top: 81px;
+    width: 100%;
+    text-align: left;
+    float: left;
+    left: 0;
+    .ngx-pagination a, .ngx-pagination button , span {
+      cursor: pointer;
+      font-size: 9px;
+  }
+  }
+}
+
+.wrapperFullWidth {
+  width: 100% !important;
+}
 @media (max-width: 992px) {
   .search-box{
     float: none;
@@ -159,7 +196,7 @@ app-movie-card {
     padding: 24px 16px;
   }
   ::ng-deep .mat-card-title {
-    font-size: 20px !important;
+    font-size: 15px;
   }
 }
 @media (max-width: 767px) {

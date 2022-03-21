@@ -5,7 +5,6 @@
         OMDB Search
       </a>
       <div class="search-box d-flex" >
-
         <label class="search-title" fxHide.xs>Search a Movie</label>
         <mat-form-field class="example-form-field" appearance="fill">
           <input matInput type="text" [(ngModel)]="searchValue">
@@ -33,7 +32,7 @@
   <div class="searchLoad" *ngIf="pageState == 'Loaded'">
     <mat-grid-list cols="2" rowHeight="2:1">
       <div class="wrapper">
-        <div class="movie-card" *ngFor="let item of moviesList | paginate : {itemsPerPage: pageSize, currentPage: page, totalItems: count};let i = index">
+        <div class="movie-card" id="wrapperDiv-{{i}}" *ngFor="let item of moviesList | paginate : {itemsPerPage: pageSize, currentPage: page, totalItems: count};let i = index">
         <div id="cardGrid-{{i}}">
           <app-movie-card [movieData]="item" [itemIndex]="i"></app-movie-card>
         </div>

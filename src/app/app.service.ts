@@ -2,6 +2,7 @@ import { Injectable, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SearchResult } from './model/search-result';
+import { Movie } from './model/movie';
 
 @Injectable()
 export class AppService {
@@ -15,8 +16,8 @@ export class AppService {
     return this.http.get<SearchResult>(`${this.api}&s=${titleValue}*&page=${pageValue}`);
   }
 
-  getDetails(imdbTitle: string): Observable<SearchResult> {
-    return this.http.get<SearchResult>(`${this.api}&i=${imdbTitle}`);
+  getDetails(imdbTitle: string): Observable<Movie> {
+    return this.http.get<Movie>(`${this.api}&i=${imdbTitle}`);
   }
 
   elementClassModification(element : HTMLElement, renderer: Renderer2, cssClass : string, action : string) {

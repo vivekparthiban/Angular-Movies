@@ -17,6 +17,7 @@ export class MovieCardComponent implements OnInit {
   cardSize : string = '';
   gridColumns = 1;
   currentMovieElement !: HTMLElement;
+  wrapperElement !: HTMLElement;
   constructor(
     private appService: AppService,
     private renderer : Renderer2
@@ -29,8 +30,12 @@ export class MovieCardComponent implements OnInit {
     console.info('item index = ', this.itemIndex);
     if(typeof document !== 'undefined') {
       const element = document.getElementById('cardGrid-'+this.itemIndex);
+      const wrapper = document.getElementById('wrapperDiv-'+this.itemIndex);
       if(element != null) {
         this.currentMovieElement = element;
+      }
+      if(wrapper !=null) {
+        this.wrapperElement = wrapper;
       }
     }
   }
@@ -38,17 +43,17 @@ export class MovieCardComponent implements OnInit {
   showDetails(): void {
     this.cardSize = 'fullWidth';
     console.info(this.movieData.imdbID)
-    this.appService.getDetails(this.movieData.imdbID).subscribe((res: SearchResult) => {
-      console.info('movie response = ', res);
+    this.appService.getDetails(this.movieData.imdbID).subscribe((res: Movie) => {
+      this.movieData = res;
       this.appService.elementClassModification(this.currentMovieElement, this.renderer, 'fullWidth', 'add');
+      this.appService.elementClassModification(this.wrapperElement, this.renderer, 'wrapperFullWidth', 'add');
     })
   }
 
   hideDetails() {
     this.cardSize = 'halfWidth';
-    this.appService.getDetails(this.movieData.imdbID).subscribe((res: SearchResult) => {
-      this.appService.elementClassModification(this.currentMovieElement, this.renderer, 'halfWidth', 'add');
-    })
+    this.appService.elementClassModification(this.currentMovieElement, this.renderer, 'halfWidth', 'remove');
+    this.appService.elementClassModification(this.wrapperElement, this.renderer, 'wrapperFullWidth', 'remove');
   }
 
 }
