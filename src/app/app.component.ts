@@ -11,6 +11,8 @@ import { MediaObserver } from '@angular/flex-layout';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'omdb-movies';
   pageState : string = 'Initial';
+  welcomeMessage : string = 'Welcome to OMDB Search, search something in the bar above!';
+  errorMessage : string = 'Movies not found!';
   searchResponse : SearchResult = new SearchResult();
   searchValue : string = '';
   deviceSize : string = '';
@@ -20,7 +22,18 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.appService.getMovies('The Avengers').subscribe((res : SearchResult) => {
+  }
+
+  ngAfterViewInit() : void {
+    this.observableMedia.asObservable().subscribe((change) => {
+      this.deviceSize = change[0].mqAlias;
+      console.info('device size = ', this.deviceSize);
+    });
+  }
+
+  onSearchClick() : void {
+    console.info('search field value = ', this.searchValue);
+    this.appService.getMovies(this.searchValue).subscribe((res : SearchResult) => {
       this.searchResponse = res;
       if(res.Response == 'True') {
         if(this.searchResponse.Search.length > 0) {
@@ -31,13 +44,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       } else {
         this.pageState = 'Error';
       }
-    });
-  }
-
-  ngAfterViewInit() : void {
-    this.observableMedia.asObservable().subscribe((change) => {
-      this.deviceSize = change[0].mqAlias;
-      console.info('device size = ', this.deviceSize);
     });
   }
 }

@@ -13,7 +13,7 @@
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
-        <button class="search-btn" type="button">
+        <button class="search-btn" type="button" (click)="onSearchClick()">
           Search
         </button>
       </div>
@@ -22,12 +22,8 @@
 </header>
 <!-- <router-outlet></router-outlet> -->
 <div class="mainContainer-{{deviceSize}}">
-  <div class="initialLoad" *ngIf="pageState == 'Initial'">
-    Welcome to OMDB search. Search something in the bar above!
-  </div>
-  <div class="errorLoad" *ngIf="pageState == 'Error'">
-    Movie not found!
-  </div>
+  <div class="initialLoad" *ngIf="pageState == 'Initial'" [innerHtml]="welcomeMessage"></div>
+  <div class="errorLoad" *ngIf="pageState == 'Error'" [innerHtml]="errorMessage"></div>
   <div class="searchLoad" *ngIf="pageState == 'Loaded'">
     <mat-grid-list cols="2" rowHeight="2:1">
       <div class="movie-card" *ngFor="let item of this.searchResponse.Search">
