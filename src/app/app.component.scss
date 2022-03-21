@@ -1,0 +1,78 @@
+$white:#fff;
+
+.movies-div-container{
+  box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.75);
+  min-height: 100px;
+  .movie-container{
+    max-width: 1200px;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+.title{
+  font-size: 20px;
+  text-align:left;
+  float: left;
+  padding-top: 40px;
+}
+.search-box ::ng-deep .mat-form-field-flex{
+  background-color: $white;
+
+  input{
+    background: $white;
+    font-size: 17px;
+  }
+  button{
+    border: 0;
+    background-color: $white;
+
+  }
+
+}
+.search-box{
+  float: right;
+  padding-top: 15px;
+  .search-title{
+    font-size: 16px;
+    padding-right: 5px;
+  }
+  .search-btn{
+    color: $white;
+    background-color: #007de9;
+    font-size: 15px;
+    border: 0;
+    border-radius: 4px;
+    padding: 10px;
+    min-width: 100px;
+    text-transform: uppercase;
+    margin-left: 10px;
+  }
+}
+.searchLoad  ::ng-deep{
+  max-width: 1200px;
+    text-align: center;
+    margin: 0 auto;
+    .example-card{
+      padding: 0;
+    }
+    .mat-card-image{
+      height: 200px;
+      margin: 0;
+      width: 100%;
+    }
+    .movie-card-box{
+      display: flex;
+      .movie-card-left{
+        width: 49%;
+      }
+      .movie-card-righ{
+        width: 49%;
+
+      }
+    }
+    .mat-card-title{
+      margin-left: 20px;
+    }
+}
