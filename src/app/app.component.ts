@@ -31,7 +31,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() : void {
     this.observableMedia.asObservable().subscribe((change) => {
       this.deviceSize = change[0].mqAlias;
-      console.info('device size = ', this.deviceSize);
     });
   }
 
