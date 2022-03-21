@@ -22,12 +22,14 @@
 </header>
 <!-- <router-outlet></router-outlet> -->
 <div class="body-section mainContainer-{{deviceSize}}">
-  <mat-card *ngIf="pageState == 'Initial'">
-    <div class="initialLoad" [innerHtml]="welcomeMessage"></div>
-  </mat-card>
-  <mat-card *ngIf="pageState == 'Error'">
-    <div class="errorLoad" [innerHtml]="errorMessage"></div>
-  </mat-card>
+  <div class="text-cards">
+    <mat-card *ngIf="pageState == 'Initial'">
+      <div class="initialLoad" [innerHtml]="welcomeMessage"></div>
+    </mat-card>
+    <mat-card *ngIf="pageState == 'Error'" class="error-class">
+      <div class="errorLoad" [innerHtml]="errorMessage"></div>
+    </mat-card>
+  </div>
   <div class="searchLoad" *ngIf="pageState == 'Loaded'">
     <mat-grid-list cols="2" rowHeight="2:1">
       <div class="movie-card" *ngFor="let item of this.searchResponse.Search">
