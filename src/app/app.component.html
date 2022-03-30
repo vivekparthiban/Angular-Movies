@@ -6,12 +6,9 @@
       </a>
       <div class="search-box d-flex" >
         <label class="search-title" fxHide.xs>Search a Movie</label>
-        <mat-form-field class="example-form-field" appearance="fill">
-          <input matInput type="text" [(ngModel)]="searchValue">
-          <button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
+        <div class="mat-form-field" appearance="fill">
+          <input type="text" [(ngModel)]="searchValue" (keydown.enter)="handleEnterSearch(searchValue)">
+        </div>
         <button class="search-btn" type="button" (click)="onSearchClick()">
           Search
         </button>
@@ -30,23 +27,23 @@
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
   <div class="text-cards">
-    <mat-card *ngIf="pageState == 'Initial'">
+    <div *ngIf="pageState == 'Initial'" class="mat-card mat-focus-indicator ng-star-inserted">
       <div class="initialLoad" [innerHtml]="welcomeMessage"></div>
-    </mat-card>
-    <mat-card *ngIf="pageState == 'Error'" class="error-class">
+    </div>
+    <div *ngIf="pageState == 'Error'" class="mat-card mat-focus-indicator error-class ng-star-inserted">
       <div class="errorLoad" [innerHtml]="errorMessage"></div>
-    </mat-card>
+    </div>
   </div>
   <div class="searchLoad" *ngIf="pageState == 'Loaded'">
-    <mat-grid-list cols="2" rowHeight="2:1">
+    <div class="movie-grid">
       <div class="wrapper">
         <div class="movie-card" id="wrapperDiv-{{i}}" *ngFor="let item of moviesList | paginate : {itemsPerPage: pageSize, currentPage: page, totalItems: count};let i = index">
-        <div id="cardGrid-{{i}}">
+        <div id="cardGrid-{{i}}" class="cardgrid">
           <app-movie-card [movieData]="item" [itemIndex]="i"></app-movie-card>
         </div>
       </div>
       </div>
-    </mat-grid-list>
+    </div>
     <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onPageChange($event)"></pagination-controls>
   </div>
 </div>

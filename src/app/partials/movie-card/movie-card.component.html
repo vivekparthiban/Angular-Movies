@@ -1,11 +1,11 @@
 <div class="movie-card-{{cardSize}}">
-  <mat-card class="example-card">
+  <div class="mat-card mat-focus-indicator example-card">
     <div class="movie-card-box">
       <div class="movie-card-left">
       <img mat-card-image src="{{movieData.Poster}}" alt="{{movieData.Title}"/>
       </div>
       <div class="movie-card-right">
-        <mat-card-title><span  *ngIf="cardSize == 'fullWidth'" (click)="hideDetails()"><img src="/assets/close.png" alt="Back"></span>{{movieData.Title}}</mat-card-title>
+        <div  class="mat-card-title"><span  *ngIf="cardSize == 'fullWidth'" (click)="hideDetails()"><img src="/assets/close.png" alt="Back"></span>{{movieData.Title}}</div>
         <div *ngIf="cardSize == 'fullWidth'" class="card-box-lay">
           <p class="pTitle heading-cls">Plot</p>
           <p class="pDetails" [innerHtml]="movieData.Plot"></p>
@@ -16,13 +16,13 @@
             <p class="pDetails">- {{rating.Source}} : {{rating.Value}}</p>
           </div>
         </div>
-        <mat-card-actions>
+        <div class="mat-card-actions">
           <span class="year">{{movieData.Year}}</span>
           <button *ngIf="cardSize == 'halfWidth'" class="search-btn" mat-button (click)="showDetails()">DETAILS</button>
-        </mat-card-actions>
+        </div>
       </div>
     </div>
-  </mat-card>
+  </div>
 </div>
 
 

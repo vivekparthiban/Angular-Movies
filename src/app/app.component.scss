@@ -28,30 +28,8 @@ app-movie-card {
   float: left;
   font-weight: 500;
 }
-.search-box ::ng-deep {
-  .mat-form-field-flex{
-    background-color: $white;
-    input{
-      background: $white;
-      font-size: 17px;
-    }
-    button{
-      border: 0;
-      background-color: $white;
-    }
-  }
-  .mat-form-field-wrapper {
-    padding-bottom: 0px;
-  }
-  .mat-form-field-underline {
-    bottom: 0px;
-  }
-  .mat-form-field-appearance-fill .mat-form-field-flex, .mat-form-field-appearance-fill .mat-form-field-infix {
-    padding: 0px !important;
-  }
-  .mat-form-field-wrapper {
-    height: 40px;
-  }
+.search-box  {
+
 }
 .search-box{
   float: right;
@@ -86,16 +64,22 @@ app-movie-card {
     .mat-card-image{
       height: 250px;
       margin: 0;
-      width: 100%;
+      width: -webkit-fill-available;
     }
     .movie-card-box{
       display: flex;
     }
     .mat-card-title{
       margin: 16px;
+      line-height: 27px;
     }
     .movie-card-left{
-      width: 25%;
+      width: 35%;
+      img{
+        width: -webkit-fill-available;
+        max-height: 230px;
+
+      }
     }
     .movie-card-right{
       width: 75%;
@@ -104,10 +88,11 @@ app-movie-card {
 }
 .body-section {
   padding:24px 0px;
-  mat-card {
+  .mat-card {
     background-color: #F3F3F3;
     text-align: center;
     box-shadow: none;
+    padding:20px
   }
 }
 
@@ -140,6 +125,48 @@ app-movie-card {
   width: 45%;
   float: left;
   margin: 20px;
+  max-height: 230px;
+
+}
+
+
+.wrapperFullWidth {
+  width: 100% !important;
+  max-height: 100% !important;
+}
+
+  .mat-form-field {
+    display: contents;
+    input{
+      background: #efefef;
+      border: 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+  .search-box{
+    float: none;
+    display: flex;
+    padding-top: 0px;
+
+
+      .mat-form-field {
+        width: 70px;
+      }
+
+    .search-btn{
+      margin-left: 8px;
+      min-width: 80px;
+    }
+  }
+  .body-section {
+    padding: 24px 16px;
+  }
+   .mat-card-title {
+    font-size: 15px;
+  }
 }
 @media (max-width: 767px) {
   .searchLoad  ::ng-deep{
@@ -149,18 +176,18 @@ app-movie-card {
 
   }
   .navbar-brand.title , .mat-card-title{
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .movie-card {
     width: 100%;
     margin: 0;
     margin-top: 20px;
+    height: auto;
 
   }
   pagination-controls ::ng-deep{
-    position: absolute;
-    top: 81px;
+
     width: 100%;
     text-align: left;
     float: left;
@@ -170,37 +197,19 @@ app-movie-card {
       font-size: 9px;
   }
   }
-}
-
-.wrapperFullWidth {
-  width: 100% !important;
-}
-@media (max-width: 992px) {
-  .search-box{
-    float: none;
-    display: flex;
-    padding-top: 0px;
-    .mat-form-field {
-      width: 100px !important;
-    }
-    ::ng-deep {
-      .mat-form-field-infix {
-        width: 70px !important;
-      }
-    }
-    .search-btn{
-      margin-left: 8px;
-    }
-  }
-  .body-section {
-    padding: 24px 16px;
-  }
-  ::ng-deep .mat-card-title {
-    font-size: 15px;
-  }
-}
-@media (max-width: 767px) {
   .wrapper {
     grid-template-columns: repeat(1, 1fr);
   }
+  .mat-form-field {
+
+        input{
+    max-width:100px;
+    font-size:12px;
+        }
+        .search-box {
+          min-width: 70px;
+          font-size: 10px;
+          padding: 5px;
+      }
+    }
 }

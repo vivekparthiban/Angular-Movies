@@ -4,6 +4,7 @@ import { SearchResult } from './model/search-result';
 import { MediaObserver } from '@angular/flex-layout';
 import { Movie } from './model/movie';
 import { NgxSpinnerService } from "ngx-spinner";
+import { debounceTime, distinctUntilChanged, pipe, ReplaySubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -22,12 +23,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   count: number = 0;
   pageSize: number = 10;
   moviesList : Movie[] = [];
+  /* inputChangeSubject : Subject<string> = new ReplaySubject<string>(); */
   constructor(private appService : AppService,
     private observableMedia: MediaObserver,
     private spinnerService : NgxSpinnerService) {
   }
 
   ngOnInit(): void {
+    /* this.observeInputChanged(); */
   }
 
   ngAfterViewInit() : void {
@@ -35,6 +38,13 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.deviceSize = change[0].mqAlias;
     });
   }
+
+  /* observeInputChanged() {
+    this.inputChangeSubject.pipe(debounceTime(200), distinctUntilChanged()).subscribe((value : string) => {
+      this.searchValue = value;
+      this.onSearchClick();
+    })
+  } */
 
   onSearchClick() : void {
     this.spinnerService.show();
@@ -59,6 +69,15 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  handleEnterSearch(value : string) {
+    this.searchValue = value;
+    this.onSearchClick();
+  }
+
+  /* onPredictiveSearch($event : string) {
+    this.inputChangeSubject.next($event);
+  } */
 
   onPageChange($event : number) {
     this.spinnerService.show();

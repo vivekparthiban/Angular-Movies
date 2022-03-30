@@ -1,11 +1,13 @@
 import { Injectable, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { SearchResult } from './model/search-result';
 import { Movie } from './model/movie';
 
 @Injectable()
 export class AppService {
+
+  public showLoader = new BehaviorSubject<boolean>(false);
 
   readonly apikey = '1a935f76';
   readonly api = `https://www.omdbapi.com/?apikey=${this.apikey}&type=movie&r=json`;
